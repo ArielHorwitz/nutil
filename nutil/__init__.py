@@ -5,6 +5,7 @@ logger = logging.getLogger(__name__)
 
 
 import os, sys
+import time
 import numpy as np
 from pathlib import Path
 
@@ -168,4 +169,4 @@ def sortable_timestamp():
 
     :return:    Formatted timestamp
     """
-    return datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+    return time.strftime('%Y-%m-%d %H:%M:%S:%f')[:-3]
