@@ -1,5 +1,6 @@
 
 import time
+from time import strftime
 import contextlib
 import numpy as np
 
@@ -19,14 +20,15 @@ def pong(ping_, ms_rounding=3):
 
 
 @contextlib.contextmanager
-def pingpong(desc='Pingpong', show=True, ms_rounding=3):
+def pingpong(desc='Pingpong', show=True, return_elapsed=None, ms_rounding=3):
     """A context manager to record elapsed time of execution of a code block."""
     p = ping()
     yield p
     elapsed = pong(p, ms_rounding)
     if show:
         print(f'{desc} elapsed in {elapsed}ms')
-    return elapsed
+    if callable(return_elapsed):
+        return_elapsed(elapsed)
 
 
 @contextlib.contextmanager

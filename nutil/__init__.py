@@ -95,7 +95,11 @@ def configure_logging(file=None, level=None, datefmt=None):
     level = logging.DEBUG if level is None else level
     datefmt = '%Y-%m-%d %H:%M:%S.%f' if datefmt is None else datefmt
     logging.basicConfig(level=level, filename=file, datefmt=datefmt)
-    m = f'Configured debug Log at: {file} (log level: {level})\n'
+    m = '\n'.join([
+        f'Configured debug log (level: {level}) on {sortable_timestamp()}',
+        f'Log file: {file}',
+        '---',
+    ])
     print(m)
     logger.info(m)
 
